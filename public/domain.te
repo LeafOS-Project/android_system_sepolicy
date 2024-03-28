@@ -32,20 +32,20 @@ allow domain self:unix_stream_socket { create_stream_socket_perms connectto };
 # Inherit or receive open files from others.
 allow domain init:fd use;
 
+allow domain su:fd use;
+allow domain su:unix_stream_socket { connectto getattr getopt read write shutdown };
+allow domain su:unix_dgram_socket sendto;
+
+allow { domain -init } su:binder { call transfer };
+
+# Running something like "pm dump com.android.bluetooth" requires
+# fifo writes
+allow domain su:fifo_file { write getattr };
+
+# allow "gdbserver --attach" to work for su.
+allow domain su:process sigchld;
+
 userdebug_or_eng(`
-  allow domain su:fd use;
-  allow domain su:unix_stream_socket { connectto getattr getopt read write shutdown };
-  allow domain su:unix_dgram_socket sendto;
-
-  allow { domain -init } su:binder { call transfer };
-
-  # Running something like "pm dump com.android.bluetooth" requires
-  # fifo writes
-  allow domain su:fifo_file { write getattr };
-
-  # allow "gdbserver --attach" to work for su.
-  allow domain su:process sigchld;
-
   # Allow writing coredumps to /cores/*
   allow domain coredump_file:file create_file_perms;
   allow domain coredump_file:dir ra_dir_perms;

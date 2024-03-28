@@ -555,9 +555,7 @@ allow system_server tombstoned:fd use;
 allow system_server dumpstate:fifo_file append;
 allow system_server incidentd:fifo_file append;
 # Write to a pipe created from `adb shell` (for debuggerd -j `pidof system_server`)
-userdebug_or_eng(`
-  allow system_server su:fifo_file append;
-')
+allow system_server su:fifo_file append;
 
 # Allow system_server to read pipes from incidentd (used to deliver incident reports
 # to dropbox)
