@@ -77,8 +77,6 @@ hal_client_domain(cameraserver, hal_omx)
 hal_client_domain(cameraserver, hal_allocator)
 
 # Allow shell commands from ADB for CTS testing/dumping
-userdebug_or_eng(`
-  allow cameraserver su:fd use;
-  allow cameraserver su:fifo_file { read write };
-  allow cameraserver su:unix_stream_socket { read write };
-')
+allow cameraserver su:fd use;
+allow cameraserver su:fifo_file { read write };
+allow cameraserver su:unix_stream_socket { read write };

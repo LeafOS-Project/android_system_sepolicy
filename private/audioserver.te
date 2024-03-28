@@ -70,11 +70,9 @@ allow audioserver adbd:unix_stream_socket { read write };
 allow audioserver shell:fifo_file { read write };
 
 # Allow shell commands from ADB for CTS testing/dumping
-userdebug_or_eng(`
-  allow audioserver su:fd use;
-  allow audioserver su:fifo_file { read write };
-  allow audioserver su:unix_stream_socket { read write };
-')
+allow audioserver su:fd use;
+allow audioserver su:fifo_file { read write };
+allow audioserver su:unix_stream_socket { read write };
 
 # Allow write access to log tag property
 set_prop(audioserver, log_tag_prop);

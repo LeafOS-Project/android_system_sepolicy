@@ -37,6 +37,7 @@ allow cameraserver surfaceflinger_service:service_manager find;
 
 allow cameraserver hidl_token_hwservice:hwservice_manager find;
 allow cameraserver hal_camera_service:service_manager find;
+allow cameraserver virtual_camera_service:service_manager find;
 
 # Allow to talk with surfaceflinger through unix stream socket
 allow cameraserver surfaceflinger:unix_stream_socket { read write };
@@ -76,8 +77,6 @@ hal_client_domain(cameraserver, hal_omx)
 hal_client_domain(cameraserver, hal_allocator)
 
 # Allow shell commands from ADB for CTS testing/dumping
-userdebug_or_eng(`
-  allow cameraserver su:fd use;
-  allow cameraserver su:fifo_file { read write };
-  allow cameraserver su:unix_stream_socket { read write };
-')
+allow cameraserver su:fd use;
+allow cameraserver su:fifo_file { read write };
+allow cameraserver su:unix_stream_socket { read write };

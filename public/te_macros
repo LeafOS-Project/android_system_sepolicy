@@ -601,9 +601,7 @@ define(`build_test_only', ifelse(target_exclude_build_test, `true', , $1))
 # Fallback crash handling for processes that can't exec crash_dump (e.g. because of seccomp).
 #
 define(`crash_dump_fallback', `
-userdebug_or_eng(`
-  allow $1 su:fifo_file append;
-')
+allow $1 su:fifo_file append;
 allow $1 anr_data_file:file append;
 allow $1 dumpstate:fd use;
 allow $1 incidentd:fd use;
@@ -707,9 +705,7 @@ define(`add_service', `
 
   # On debug builds with root, allow binder services to use binder over TCP.
   # Not using rw_socket_perms_no_ioctl to avoid granting too many permissions.
-  userdebug_or_eng(`
-    allow $1 su:tcp_socket { accept getopt read write };
-  ')
+  allow $1 su:tcp_socket { accept getopt read write };
 ')
 
 ###########################################
