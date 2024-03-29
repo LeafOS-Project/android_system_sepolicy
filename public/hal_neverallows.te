@@ -47,7 +47,7 @@ neverallow {
   -hal_nlinterceptor_server
 } {
   domain
-  userdebug_or_eng(`-su')
+  -su
 }:tcp_socket *;
 
 # The UWB HAL is not actually a networking HAL but may need to bring up and down

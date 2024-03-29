@@ -157,14 +157,14 @@ neverallow app_zygote {
   -app_zygote
   -logd
   -system_server
-  userdebug_or_eng(`-su')
+  -su
 }:unix_dgram_socket *;
 
 neverallow app_zygote {
   domain
   -app_zygote
   -prng_seeder
-  userdebug_or_eng(`-su')
+  -su
 }:unix_stream_socket *;
 
 # Never allow ptrace

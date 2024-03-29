@@ -665,7 +665,7 @@ full_treble_only(`
   neverallow {
     coredomain
     -shell
-    userdebug_or_eng(`-su')
+    -su
     -ueventd # uevent is granted create for this device, but we still neverallow I/O below
   } vndbinder_device:chr_file rw_file_perms;
 ')
@@ -683,7 +683,7 @@ full_treble_only(`
   neverallow {
     coredomain
     -shell
-    userdebug_or_eng(`-su')
+    -su
   } vndservicemanager:binder *;
 ')
 
@@ -1040,7 +1040,7 @@ neverallow * { file_type fs_type dev_type }:{ lnk_file fifo_file sock_file } mou
 # Nobody should be able to execute su on user builds.
 # On userdebug/eng builds, only dumpstate, shell, and
 # su itself execute su.
-neverallow { domain userdebug_or_eng(`-dumpstate -shell -su') } su_exec:file no_x_file_perms;
+neverallow { domain -dumpstate -shell -su } su_exec:file no_x_file_perms;
 
 # Do not allow the introduction of new execmod rules. Text relocations
 # and modification of executable pages are unsafe.
@@ -1113,7 +1113,7 @@ neverallow {
 # the appdomain attribute. simpleperf is excluded as a domain transitioned to
 # when running an app-scoped profiling session.
 neverallow { domain -simpleperf_app_runner -runas -app_zygote -webview_zygote -zygote } {
-  appdomain -shell -simpleperf userdebug_or_eng(`-su')
+  appdomain -shell -simpleperf -su
 }:process { transition dyntransition };
 
 # Minimize read access to shell- or app-writable symlinks.

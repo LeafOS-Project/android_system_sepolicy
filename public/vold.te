@@ -344,7 +344,7 @@ neverallow vold {
   -keystore
   -servicemanager
   -system_server
-  userdebug_or_eng(`-su')
+  -su
 }:binder call;
 
 neverallow vold fsck_exec:file execute_no_trans;

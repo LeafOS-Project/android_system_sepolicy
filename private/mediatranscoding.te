@@ -63,4 +63,4 @@ neverallow mediatranscoding { file_type fs_type }:file execute_no_trans;
 # Lengthier explanation here:
 # https://android-developers.googleblog.com/2016/05/hardening-media-stack.html
 neverallow mediatranscoding domain:{ udp_socket rawip_socket } *;
-neverallow mediatranscoding { domain userdebug_or_eng(`-su') }:tcp_socket *;
+neverallow mediatranscoding { domain -su }:tcp_socket *;

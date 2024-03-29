@@ -576,7 +576,7 @@ full_treble_only(`
     -netd # netdomain needs this
     -mdnsd # netdomain needs this
     -prng_seeder # Any process using libcrypto needs this
-    userdebug_or_eng(`-su') # communications with su are permitted only on userdebug or eng builds
+    -su # communications with su are permitted only on userdebug or eng builds
     -init
     -tombstoned # linker to tombstoned
     -heapprofd

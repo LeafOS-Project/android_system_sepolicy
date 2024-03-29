@@ -181,5 +181,5 @@ neverallow installd {
     domain
     -system_server
     -servicemanager
-    userdebug_or_eng(`-su')
+    -su
 }:binder call;

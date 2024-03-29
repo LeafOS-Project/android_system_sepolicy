@@ -166,7 +166,7 @@ neverallow {
 
 # apps may not interact with netd over binder.
 neverallow { appdomain -network_stack } netd:binder call;
-neverallow netd { appdomain -network_stack userdebug_or_eng(`-su') }:binder call;
+neverallow netd { appdomain -network_stack -su }:binder call;
 
 # If an already existing file is opened with O_CREATE, the kernel might generate
 # a false report of a create denial. Silence these denials and make sure that
